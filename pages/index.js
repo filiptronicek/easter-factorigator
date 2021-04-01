@@ -19,7 +19,7 @@ export default function Home() {
         </p>
 
         <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
+          <a className={styles.card}>
             <h3>Random fact #{Math.floor(Math.random() * 500)}</h3>
             <p>This is a poggers moment.</p>
           </a>
