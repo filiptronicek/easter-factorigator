@@ -129,10 +129,11 @@
   transition: transform 0.5s;
   cursor: pointer;
   margin-left: calc(50% - 1em);
-  color: white;
+  color: black;
 }
 
 .refresh svg:hover {
+  color: #696969;
   transform: rotate(180deg);
 }
 
