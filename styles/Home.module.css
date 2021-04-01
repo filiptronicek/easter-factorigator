@@ -90,7 +90,7 @@
   margin: 1rem;
   flex-basis: 45%;
   padding: 1.5rem;
-  text-align: left;
+  text-align: center;
   color: inherit;
   text-decoration: none;
   border: 1px solid #eaeaea;
@@ -119,6 +119,19 @@
 .logo {
   height: 1.2em;
 }
+
+.refresh {
+  margin-top: 20px;
+  height: 2em;
+  transition: transform 0.3s;
+  cursor: pointer;
+  /*margin-left: calc(50% - 1em);*/
+}
+
+.refresh:hover {
+  transform: rotate(180deg);
+}
+
 
 @media (max-width: 600px) {
   .grid {

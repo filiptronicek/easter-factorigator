@@ -1,5 +1,5 @@
-import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
 
 export default function Home() {
   return (
@@ -11,7 +11,8 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Easter factorigator <img className={styles.logo} src="easter-bunny.svg" />
+          Easter factorigator{" "}
+          <img className={styles.logo} src="easter-bunny.svg" />
         </h1>
 
         <p className={styles.description}>
@@ -20,9 +21,11 @@ export default function Home() {
 
         <div className={styles.grid}>
           <a className={styles.card}>
-            <h3>Random fact #{Math.floor(Math.random() * 500)}</h3>
+            <h3>Random fact #{Math.floor(Math.random() * 500) + 1}</h3>
             <p>This is a poggers moment.</p>
+            <img className={styles.refresh} src="refresh.svg" />
           </a>
+
         </div>
       </main>
 
@@ -30,6 +33,5 @@ export default function Home() {
         <a href="/">Home</a>&nbsp; • &nbsp;<a href="/legal">Legal</a>
       </footer>
     </div>
-  )
+  );
 }
-
