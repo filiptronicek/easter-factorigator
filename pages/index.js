@@ -1,24 +1,24 @@
-import Head from "next/head";
-import styles from "../styles/Home.module.css";
-import "node-fetch";
-import { useState, useEffect } from "react";
+import Head from 'next/head'
+import styles from '../styles/Home.module.css'
+import 'node-fetch'
+import { useState, useEffect } from 'react'
 
 export default function Home(defaults) {
-  const [fact, setFact] = useState(defaults.defaults.fact);
-  const [factNum, setFactNum] = useState(defaults.defaults.num);
-  const [pageURL, setPageURL] = useState(0);
+  const [fact, setFact] = useState(defaults.defaults.fact)
+  const [factNum, setFactNum] = useState(defaults.defaults.num)
+  const [pageURL, setPageURL] = useState(0)
 
-  const generateFact = async (domain=pageURL) => {
-    console.log(domain);
-    const res = await fetch(`${domain}api/fact`);
-    const resJ = await res.json();
-    setFact(resJ.result);
-    setFactNum(resJ.number);
-  };
+  const generateFact = async (domain = pageURL) => {
+    console.log(domain)
+    const res = await fetch(`${domain}api/fact`)
+    const resJ = await res.json()
+    setFact(resJ.result)
+    setFactNum(resJ.number)
+  }
 
   useEffect(() => {
-    setPageURL(window.location.href);
-  });
+    setPageURL(window.location.href)
+  })
 
   return (
     <div className={styles.container}>
@@ -29,7 +29,7 @@ export default function Home(defaults) {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Easter factorigator{" "}
+          Easter factorigator{' '}
           <img className={styles.logo} src="easter-bunny.svg" />
         </h1>
 
@@ -41,11 +41,27 @@ export default function Home(defaults) {
           <a className={styles.card}>
             <h3>Random fact #{factNum}</h3>
             <p>{fact}</p>
-            <img
+            <p
               onClick={() => generateFact()}
               className={styles.refresh}
               src="refresh.svg"
-            />
+            >
+              <svg
+                data-darkreader-inline-fill=""
+                data-darkreader-inline-stroke=""
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                />
+              </svg>
+            </p>
           </a>
         </div>
       </main>
@@ -54,14 +70,14 @@ export default function Home(defaults) {
         <a href="/">Home</a>&nbsp; • &nbsp;<a href="/legal">Legal</a>
       </footer>
     </div>
-  );
+  )
 }
 
 export async function getStaticProps({}) {
   const defaults = {
-    fact: "There are many many facts about easter on this page, have fun! 🐣",
-    num: 1
-  };
+    fact: 'There are many many facts about easter on this page, have fun! 🐣',
+    num: 1,
+  }
 
   return {
     props: { defaults }, // will be passed to the page component as props

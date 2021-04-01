@@ -84,13 +84,13 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  max-width: 800px;
+  width: 800px;
   margin-top: 3rem;
 }
 
 .card {
   margin: 1rem;
-  flex-basis: 45%;
+  flex-basis: 60%;
   padding: 1.5rem;
   text-align: left;
   color: inherit;
@@ -123,7 +123,7 @@
   height: 1.2em;
 }
 
-.refresh {
+.refresh svg {
   margin-top: 20px;
   height: 2em;
   transition: transform 0.5s;
@@ -132,10 +132,15 @@
   color: white;
 }
 
-.refresh:hover {
+.refresh svg:hover {
   transform: rotate(180deg);
 }
 
+@media screen and (prefers-color-scheme: dark) {
+  .refresh svg {
+    color: white;
+  }
+}
 
 @media (max-width: 600px) {
   .grid {

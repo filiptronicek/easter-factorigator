@@ -15,3 +15,10 @@ a {
   box-sizing: border-box;
 }
 */
+
+@media screen and (prefers-color-scheme: dark) {
+  body {
+    color: #FFFDDD;
+    background: #1D1C19;
+  }
+}
