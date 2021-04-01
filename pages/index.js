@@ -1,20 +1,24 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import "node-fetch";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function Home() {
+export default function Home(defaults) {
+  const [fact, setFact] = useState(defaults.defaults.fact);
+  const [factNum, setFactNum] = useState(defaults.defaults.num);
+  const [pageURL, setPageURL] = useState(0);
 
-  const generateFact = async () => {
-    const res = await fetch("http://localhost:3000/api/fact");
+  const generateFact = async (domain=pageURL) => {
+    console.log(domain);
+    const res = await fetch(`${domain}api/fact`);
     const resJ = await res.json();
     setFact(resJ.result);
     setFactNum(resJ.number);
-    //return "An estimated $14.7 billion is spent in total for Easter in the US.";
   };
 
-  const [fact, setFact] = useState("");
-  const [factNum, setFactNum] = useState(69);
+  useEffect(() => {
+    setPageURL(window.location.href);
+  });
 
   return (
     <div className={styles.container}>
@@ -51,4 +55,15 @@ export default function Home() {
       </footer>
     </div>
   );
+}
+
+export async function getStaticProps({}) {
+  const defaults = {
+    fact: "There are a lot of facts about easter 🐣",
+    num: 1
+  };
+
+  return {
+    props: { defaults }, // will be passed to the page component as props
+  }
 }
