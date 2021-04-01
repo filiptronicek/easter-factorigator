@@ -11,7 +11,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Easter factorigator 
+          Easter factorigator <img className={styles.logo} src="easter-bunny.svg" />
         </h1>
 
         <p className={styles.description}>
@@ -32,3 +32,4 @@ export default function Home() {
     </div>
   )
 }
+
