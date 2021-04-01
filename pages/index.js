@@ -59,7 +59,7 @@ export default function Home(defaults) {
 
 export async function getStaticProps({}) {
   const defaults = {
-    fact: "There are a lot of facts about easter 🐣",
+    fact: "There are many many facts about easter on this page, have fun! 🐣",
     num: 1
   };
 
