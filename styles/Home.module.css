@@ -50,6 +50,8 @@
   margin: 0;
   line-height: 1.15;
   font-size: 4rem;
+  display: flex;
+  gap: 15px;
 }
 
 .notSoBig {
@@ -139,5 +141,9 @@
   .grid {
     width: 100%;
     flex-direction: column;
+  }
+
+  .title {
+    display: block;
   }
 }
