@@ -127,6 +127,7 @@
   transition: transform 0.5s;
   cursor: pointer;
   margin-left: calc(50% - 1em);
+  color: white;
 }
 
 .refresh:hover {

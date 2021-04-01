@@ -1,7 +1,21 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
+import "node-fetch";
+import { useState } from "react";
 
 export default function Home() {
+
+  const generateFact = async () => {
+    const res = await fetch("http://localhost:3000/api/fact");
+    const resJ = await res.json();
+    setFact(resJ.result);
+    setFactNum(resJ.number);
+    //return "An estimated $14.7 billion is spent in total for Easter in the US.";
+  };
+
+  const [fact, setFact] = useState("");
+  const [factNum, setFactNum] = useState(69);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -21,11 +35,14 @@ export default function Home() {
 
         <div className={styles.grid}>
           <a className={styles.card}>
-            <h3>Random fact #{Math.floor(Math.random() * 500) + 1}</h3>
-            <p>An estimated $14.7 billion is spent in total for Easter in the US.</p>
-            <img className={styles.refresh} src="refresh.svg" />
+            <h3>Random fact #{factNum}</h3>
+            <p>{fact}</p>
+            <img
+              onClick={() => generateFact()}
+              className={styles.refresh}
+              src="refresh.svg"
+            />
           </a>
-
         </div>
       </main>
 
