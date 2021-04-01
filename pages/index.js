@@ -22,7 +22,7 @@ export default function Home() {
         <div className={styles.grid}>
           <a className={styles.card}>
             <h3>Random fact #{Math.floor(Math.random() * 500) + 1}</h3>
-            <p>This is a poggers moment.</p>
+            <p>An estimated $14.7 billion is spent in total for Easter in the US.</p>
             <img className={styles.refresh} src="refresh.svg" />
           </a>
 
