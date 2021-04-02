@@ -33,6 +33,8 @@ export default function Home(defaults) {
     setPageURL(window.location.href);
   });
 
+  const combined = `${styles.refresh} ${styles.loading}`;
+
   return (
     <div className={styles.container}>
       <Head>
@@ -66,9 +68,9 @@ export default function Home(defaults) {
                 Translate 🌐
               </Button>
               <p
-                onClick={() => generateFact()}
-                style={{display: loading ? 'none' : 'block'}}
-                className={styles.refresh}
+                onClick={() => !loading && generateFact()}
+                disabled={loading ? 'none' : 'block'}
+                className={loading ? combined : styles.refresh}
                 src="refresh.svg"
               >
                 <svg

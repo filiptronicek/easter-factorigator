@@ -135,9 +135,20 @@
   color: black;
 }
 
+.loading svg {
+  animation-duration: 1s;
+  animation-name: example;
+  animation-iteration-count: infinite;
+}
+
+@keyframes example {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(-360deg); }
+}
+
 .refresh svg:hover {
   color: #696969;
-  transform: rotate(180deg);
+  transform: rotate(-120deg);
 }
 
 @media screen and (prefers-color-scheme: dark) {
