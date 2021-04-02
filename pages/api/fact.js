@@ -1,5 +1,7 @@
-export default (_req, res) => {
-  const message = Math.random() > 0.5 ? 'An estimated $14.7 billion is spent in total for Easter in the US.' : "none";
-  const numberID = Math.floor((message.length * 2) / (message.split(" ").length / 16));
-  res.status(200).json({ result: message, number: numberID });
+export default (_req, result) => {
+  fetch("https://easterfunction.azurewebsites.net/api/eastertrigger").then(res => res.text()).then(res => {
+    const message = res;
+    const numberID = Math.floor((message.length * 2) / (message.split(" ").length / 16));
+    result.status(200).json({ result: message, number: numberID });
+  });
 };
