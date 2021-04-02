@@ -1,33 +1,35 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
-import 'node-fetch'
-import { useState, useEffect } from 'react'
-import { PrimaryButton } from '@fluentui/react'
+import Head from 'next/head';
+import styles from '../styles/Home.module.css';
+import 'node-fetch';
+import { useState, useEffect } from 'react';
+import { PrimaryButton } from '@fluentui/react';
 
 export default function Home(defaults) {
-  const [fact, setFact] = useState(defaults.defaults.fact)
-  const [factNum, setFactNum] = useState(defaults.defaults.num)
-  const [pageURL, setPageURL] = useState(0)
-  const [translated, setTranslated] = useState('')
-  const [loading, setLoading] = useState(false)
+  const [fact, setFact] = useState(defaults.defaults.fact);
+  const [factNum, setFactNum] = useState(defaults.defaults.num);
+  const [pageURL, setPageURL] = useState(0);
+  const [translated, setTranslated] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const generateFact = async (domain = pageURL) => {
-    const res = await fetch(`${domain}api/fact`)
-    const resJ = await res.json()
-    setFact(resJ.result)
-    setFactNum(resJ.number)
-    setTranslated('')
-  }
+    setLoading(true);
+    const res = await fetch(`${domain}api/fact`);
+    const resJ = await res.json();
+    setFact(resJ.result);
+    setFactNum(resJ.number);
+    setTranslated('');
+    setLoading(false);
+  };
 
   const translateFact = async (domain = pageURL) => {
-    const res = await fetch(`${domain}api/translate?string=${fact}`)
-    const resJ = await res.json()
-    setTranslated(resJ[0].translations[0].text)
-  }
+    const res = await fetch(`${domain}api/translate?string=${fact}`);
+    const resJ = await res.json();
+    setTranslated(resJ[0].translations[0].text);
+  };
 
   useEffect(() => {
-    setPageURL(window.location.href)
-  })
+    setPageURL(window.location.href);
+  });
 
   return (
     <div className={styles.container}>
@@ -61,6 +63,7 @@ export default function Home(defaults) {
               </PrimaryButton>
               <p
                 onClick={() => generateFact()}
+                style={{display: loading ? 'none' : 'block'}}
                 className={styles.refresh}
                 src="refresh.svg"
               >
