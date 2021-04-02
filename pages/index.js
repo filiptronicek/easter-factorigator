@@ -1,24 +1,23 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
-import 'node-fetch'
-import { useState, useEffect } from 'react'
+import Head from 'next/head';
+import styles from '../styles/Home.module.css';
+import 'node-fetch';
+import { useState, useEffect } from 'react';
 
 export default function Home(defaults) {
-  const [fact, setFact] = useState(defaults.defaults.fact)
-  const [factNum, setFactNum] = useState(defaults.defaults.num)
-  const [pageURL, setPageURL] = useState(0)
+  const [fact, setFact] = useState(defaults.defaults.fact);
+  const [factNum, setFactNum] = useState(defaults.defaults.num);
+  const [pageURL, setPageURL] = useState(0);
 
   const generateFact = async (domain = pageURL) => {
-    console.log(domain)
-    const res = await fetch(`${domain}api/fact`)
-    const resJ = await res.json()
-    setFact(resJ.result)
-    setFactNum(resJ.number)
-  }
+    const res = await fetch(`${domain}api/fact`);
+    const resJ = await res.json();
+    setFact(resJ.result);
+    setFactNum(resJ.number);
+  };
 
   useEffect(() => {
-    setPageURL(window.location.href)
-  })
+    setPageURL(window.location.href);
+  }); 
 
   return (
     <div className={styles.container}>
