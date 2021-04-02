@@ -7,12 +7,20 @@ export default function Home(defaults) {
   const [fact, setFact] = useState(defaults.defaults.fact);
   const [factNum, setFactNum] = useState(defaults.defaults.num);
   const [pageURL, setPageURL] = useState(0);
+  const [translated, setTranslated] = useState("");
 
   const generateFact = async (domain = pageURL) => {
     const res = await fetch(`${domain}api/fact`);
     const resJ = await res.json();
     setFact(resJ.result);
     setFactNum(resJ.number);
+    setTranslated("");
+  };
+
+  const translateFact = async (domain = pageURL) => {
+    const res = await fetch(`${domain}api/translate?string=${fact}`);
+    const resJ = await res.json();
+    setTranslated(resJ[0].translations[0].text);
   };
 
   useEffect(() => {
@@ -39,7 +47,8 @@ export default function Home(defaults) {
         <div className={styles.grid}>
           <a className={styles.card}>
             <h3>Random fact #{factNum}</h3>
-            <p>{fact}</p>
+            <p>{translated ? translated : fact}</p>
+            <button onClick={() => translateFact()}>Translate</button>
             <p
               onClick={() => generateFact()}
               className={styles.refresh}
