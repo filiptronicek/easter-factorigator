@@ -1,13 +1,13 @@
 import { VercelRequest, VercelResponse } from '@vercel/node'
-require('dotenv').config();
+require('dotenv').config()
 /* This template relies on the request module, a simplified and user friendly
 way to make HTTP requests. */
-import request from 'request';
-import uuidv4 from 'uuid/v4';
+import request from 'request'
+import uuidv4 from 'uuid/v4'
 
-const subscriptionKey = process.env.subscriptionKey;
-const endpoint = process.env.endpoint;
-const region = process.env.region;
+const subscriptionKey: string = process.env.subscriptionKey
+const endpoint: string = process.env.endpoint
+const region: string = process.env.region
 
 export default (req: VercelRequest, response: VercelResponse) => {
   const options = {
@@ -30,10 +30,9 @@ export default (req: VercelRequest, response: VercelResponse) => {
       },
     ],
     json: true,
-  };
+  }
 
-  request(options, function (_err, _res, body) {
-    response.status(200).json(body);
-  });
-
-};
+  request(options, function (_err, _res, body: any) {
+    response.status(200).json(body)
+  })
+}
