@@ -1,31 +1,33 @@
-import Head from 'next/head';
-import styles from '../styles/Home.module.css';
-import 'node-fetch';
-import { useState, useEffect } from 'react';
+import Head from 'next/head'
+import styles from '../styles/Home.module.css'
+import 'node-fetch'
+import { useState, useEffect } from 'react'
+import { PrimaryButton } from '@fluentui/react'
 
 export default function Home(defaults) {
-  const [fact, setFact] = useState(defaults.defaults.fact);
-  const [factNum, setFactNum] = useState(defaults.defaults.num);
-  const [pageURL, setPageURL] = useState(0);
-  const [translated, setTranslated] = useState("");
+  const [fact, setFact] = useState(defaults.defaults.fact)
+  const [factNum, setFactNum] = useState(defaults.defaults.num)
+  const [pageURL, setPageURL] = useState(0)
+  const [translated, setTranslated] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const generateFact = async (domain = pageURL) => {
-    const res = await fetch(`${domain}api/fact`);
-    const resJ = await res.json();
-    setFact(resJ.result);
-    setFactNum(resJ.number);
-    setTranslated("");
-  };
+    const res = await fetch(`${domain}api/fact`)
+    const resJ = await res.json()
+    setFact(resJ.result)
+    setFactNum(resJ.number)
+    setTranslated('')
+  }
 
   const translateFact = async (domain = pageURL) => {
-    const res = await fetch(`${domain}api/translate?string=${fact}`);
-    const resJ = await res.json();
-    setTranslated(resJ[0].translations[0].text);
-  };
+    const res = await fetch(`${domain}api/translate?string=${fact}`)
+    const resJ = await res.json()
+    setTranslated(resJ[0].translations[0].text)
+  }
 
   useEffect(() => {
-    setPageURL(window.location.href);
-  }); 
+    setPageURL(window.location.href)
+  })
 
   return (
     <div className={styles.container}>
@@ -47,29 +49,38 @@ export default function Home(defaults) {
         <div className={styles.grid}>
           <a className={styles.card}>
             <h3>Random fact #{factNum}</h3>
-            <p>{translated ? translated : fact}</p>
-            <button onClick={() => translateFact()}>Translate</button>
-            <p
-              onClick={() => generateFact()}
-              className={styles.refresh}
-              src="refresh.svg"
-            >
-              <svg
-                data-darkreader-inline-fill=""
-                data-darkreader-inline-stroke=""
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                />
-              </svg>
+            <p style={{ marginBottom: '50px' }}>
+              {translated ? translated : fact}
             </p>
+            <div className={styles.settings}>
+              <PrimaryButton
+                disabled={translated}
+                onClick={() => translateFact()}
+              >
+                Translate 🌐
+              </PrimaryButton>
+              <p
+                onClick={() => generateFact()}
+                className={styles.refresh}
+                src="refresh.svg"
+              >
+                <svg
+                  data-darkreader-inline-fill=""
+                  data-darkreader-inline-stroke=""
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                  />
+                </svg>
+              </p>
+            </div>
           </a>
         </div>
       </main>

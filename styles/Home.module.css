@@ -100,13 +100,11 @@
   transition: color 0.15s ease, border-color 0.15s ease;
 }
 
-
 .card:hover,
 .card:focus,
 .card:active {
   border-color: rgb(136, 136, 136);
 }
-
 
 .card h3 {
   margin: 0 0 1rem 0;
@@ -123,8 +121,13 @@
   height: 1.2em;
 }
 
+.settings {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .refresh svg {
-  margin-top: 20px;
   height: 2em;
   transition: transform 0.5s;
   cursor: pointer;
