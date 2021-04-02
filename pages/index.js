@@ -3,6 +3,7 @@ import styles from '../styles/Home.module.css';
 import 'node-fetch';
 import { useState, useEffect } from 'react';
 import { DefaultButton } from '@fluentui/react';
+import { Button } from "@material-ui/core";
 
 export default function Home(defaults) {
   const [fact, setFact] = useState(defaults.defaults.fact);
@@ -55,12 +56,12 @@ export default function Home(defaults) {
               {translated ? translated : fact}
             </p>
             <div className={styles.settings}>
-              <DefaultButton
-                disabled={translated}
+              <Button
+                disabled={translated ? true : false}
                 onClick={() => translateFact()}
               >
                 Translate 🌐
-              </DefaultButton>
+              </Button>
               <p
                 onClick={() => generateFact()}
                 style={{display: loading ? 'none' : 'block'}}
