@@ -26,7 +26,7 @@ export default (req: VercelRequest, response: VercelResponse) => {
     },
     body: [
       {
-        text: req.query.string ||   'Hello World!',
+        text: req.query.string || 'Hello World!',
       },
     ],
     json: true,
