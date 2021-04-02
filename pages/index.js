@@ -2,7 +2,6 @@ import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import 'node-fetch';
 import { useState, useEffect } from 'react';
-import { DefaultButton } from '@fluentui/react';
 import { Button } from "@material-ui/core";
 
 export default function Home(defaults) {
@@ -23,9 +22,11 @@ export default function Home(defaults) {
   };
 
   const translateFact = async (domain = pageURL) => {
+    setLoading(true);
     const res = await fetch(`${domain}api/translate?string=${fact}`);
     const resJ = await res.json();
     setTranslated(resJ[0].translations[0].text);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -57,7 +58,9 @@ export default function Home(defaults) {
             </p>
             <div className={styles.settings}>
               <Button
-                disabled={translated ? true : false}
+                color="inerhit"
+                variant="contained"
+                disabled={translated ? true : loading}
                 onClick={() => translateFact()}
               >
                 Translate 🌐
